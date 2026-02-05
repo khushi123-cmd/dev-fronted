@@ -1,0 +1,27 @@
+.navbar{
+    background-color: bisque;
+    height: auto;
+    overflow: hidden;
+}
+
+.navbar ul{
+    padding: auto;
+    margin: auto;
+    display: flex;
+    gap: 40px;
+    justify-content:end;
+}
+
+.navbar a{
+     color: black;             
+    text-decoration: none;     
+    font-size: 18px;         
+    padding: 10px 15px;       
+    display: block;
+}
+.something{
+    background-color:red;
+}
+.nothing{
+    background-color: green;
+}
