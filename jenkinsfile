@@ -1,23 +1,29 @@
 pipeline {
     agent any
-
-    environment {
-        APP_NAME = "mywebsite"
-        IMAGE_TAG = "1.0"
-        HOST_PORT = "9001"
-        CONTAINER_PORT = "80"
+ environment {
+    
+        IMAGE_NAME = 'html-portfolio'
+        CONTAINER_NAME = 'html-portfolio-container'
     }
-
     stages {
-        stage('Build Image') {
+
+        stage('Checkout Code') {
             steps {
-                sh "docker build -t ${APP_NAME}:${IMAGE_TAG} ."
+                checkout scm
             }
         }
 
-        stage('Run Container') {
+        stage('Verify Files') {
             steps {
-                sh "docker run -d -p ${HOST_PORT}:${CONTAINER_PORT} ${APP_NAME}:${IMAGE_TAG}"
+                bat 'echo Checking project files'
+                bat 'dir'
+                bat 'if not exist index.html exit 1'
+            }
+        }
+
+        stage('Success') {
+            steps {
+                bat 'echo HTML Portfolio CI pipeline completed'
             }
         }
     }
