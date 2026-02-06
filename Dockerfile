@@ -1,3 +1,5 @@
-FROM nignx:alphine
-COPY .  /usr/share/nginx/html
+FROM nginx:alpine
+
+COPY . /usr/share/nginx/html
+
 EXPOSE 80

@@ -1,10 +1,15 @@
 pipeline {
     agent any
- environment {
-    
+
+    triggers {
+        githubPush()
+    }
+
+    environment {
         IMAGE_NAME = 'html-portfolio'
         CONTAINER_NAME = 'html-portfolio-container'
     }
+
     stages {
 
         stage('Checkout Code') {
