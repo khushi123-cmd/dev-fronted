@@ -3,27 +3,19 @@ pipeline {
 
     stages {
 
-        stage('Clone Repository') {
+        stage('Check Workspace') {
             steps {
-                git 'https://github.com/khushi123-cmd/dev-fronted.git'
+                bat 'cd'
+                bat 'dir'
             }
         }
 
-        stage('Build Docker Image') {
+        stage('Build & Deploy with Docker Compose') {
             steps {
-                sh 'docker compose build'
-            }
-        }
-
-        stage('Stop Old Containers') {
-            steps {
-                sh 'docker compose down'
-            }
-        }
-
-        stage('Deploy with Docker Compose') {
-            steps {
-                sh 'docker compose up -d'
+                bat '''
+                docker compose down
+                docker compose up -d --build
+                '''
             }
         }
     }
